@@ -21,3 +21,33 @@ def generate_string_list(list_of_strings):
         temp_list = string.split()
         string_list = append_elements_on_a_list(temp_list, string_list)
     return string_list
+
+def clean_strings(list):
+    i = 0
+    for string in list:
+        list[i] = string.strip(',"!.?()\'[]1234567890-:;')
+        i += 1
+    return list
+
+def remove_chorus(list):
+    while('[chorus]' in list):
+        list.remove('[chorus]')
+    return list
+
+def remove_verses(list):
+    i = 0
+    for string in list:
+        if string.startswith('[v'):
+            del list[i]
+        elif string.startswith('(v'):
+            del list[i]
+        i += 1
+    return list
+
+def remove_empty_elements(list):
+    i = 0
+    for string in list:
+        if not string:
+            del list[i]
+        i += 1
+    return list
