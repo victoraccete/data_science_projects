@@ -1,7 +1,10 @@
 import pandas as pd
 import unicodecsv 
+import stringAux as straux
 
-######## Part 1 - Creating of metallica subset ########
+############################################
+## Part 1 - Creating of metallica subset ###
+############################################
 with open('../datasets/songdata.csv', 'rb') as f:
     reader = unicodecsv.DictReader(f)
     lyrics_list = list(reader)
@@ -12,11 +15,17 @@ lyrics_df = pd.DataFrame(lyrics_list)
 metallica_lyrics = lyrics_df.loc[lyrics_df['artist'] == 'Metallica']
 metallica_lyrics = metallica_lyrics.drop(columns='link') #this column won't be necessary
 
-
-######## Part 2 - Creating words set ########
-words = set() 
+########################################################
+## Part 2 - Storing all unique words across all songs ##
+########################################################
+unique_words = set() 
 # https://stackoverflow.com/questions/18936957/count-distinct-words-from-a-pandas-data-frame
-metallica_lyrics['text'].str.lower().str.split().apply(words.update) 
-print("Number of unique words: ", len(words))
+metallica_lyrics['text'].str.lower().str.split().apply(unique_words.update) 
+print("Total of unique words across all 155 songs: ", len(unique_words))
+unique_words = list(unique_words)
 
-#TODO: colocar as palavras num dataframe contando as repetições 
+#########################################
+## Part 3 - Storing all words in a set ##
+#########################################
+metallica_list = list(metallica_lyrics['text'])
+all_words = straux.generate_string_list(metallica_list)
