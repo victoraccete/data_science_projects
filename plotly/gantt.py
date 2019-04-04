@@ -22,4 +22,4 @@ fig = ff.create_gantt(df, colors=colors, index_col='Role', show_colorbar=True,
                       bar_width=0.4, showgrid_x=True, showgrid_y=True, 
                       title='Membros Blind Guardian (1984-2019)')
 
-plotly.offline.plot(fig)
+plotly.offline.plot(fig, filename='gantt.html')
