@@ -1,22 +1,34 @@
 # -*- coding: utf-8 -*-
-import plotly.figure_factory as ff
-import pandas as pd
+import plotly.graph_objs as go
 import plotly.offline
 
-trace1 = go.Bar(
-    x=['giraffes', 'orangutans', 'monkeys'],
-    y=[20, 14, 23],
-    name='SF Zoo'
+tracebr = go.Bar(
+    x=['1980', '2017'],
+    y=[0.235, 2.056],
+    name='Brasil',
+    marker=dict(
+        color='rgb(40,200,40)'),
 )
-trace2 = go.Bar(
-    x=['giraffes', 'orangutans', 'monkeys'],
-    y=[12, 18, 29],
-    name='LA Zoo'
+traceus = go.Bar(
+    x=['1980', '2017'],
+    y=[2.768, 19.390],
+    name='EUA',
+    marker=dict(
+        color='rgb(40,40,200)'),
 )
 
-data = [trace1, trace2]
+tracech = go.Bar(
+    x=['1980', '2017'],
+    y=[0.189, 12.2400],
+    name='China',
+    marker=dict(
+        color='rgb(200,40,40)'),
+)
+
+data = [tracebr, traceus, tracech]
 layout = go.Layout(
-    barmode='stack'
+    barmode='group',
+    title='PIB em trilhões (1980 x 2017)'
 )
 
 fig = go.Figure(data=data, layout=layout)
